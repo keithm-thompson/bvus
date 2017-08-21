@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  resources :urls, defaults: { format: :json }
-  get 'urls/short', to: 'urls#short_to_long'
-  get '/:hash', to: 'urls#redir_to'
+  root 'api/urls#index'
+  namespace :api, defaults: { format: :json } do
+    resources :urls, only: [:create]
+    get 'urls/short', to: 'urls#short_to_long'
+    get '/:hash', to: 'urls#redir_to'
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
