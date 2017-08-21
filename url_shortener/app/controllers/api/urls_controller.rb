@@ -43,17 +43,17 @@ class Api::UrlsController < ApplicationController
 
       redirect_to url.long_url
     else
-      render status: 404, html: 'public/404.html'
+      render file: 'public/404.html', status: 404
     end
   end
 
   def short_to_long
     short_hash = extract_short_hash(params['short_url'])
     url = Url.where(short_url: short_hash)[0]
-    if url
+    if url && valid_short_url_host?(params['short_url'])
       render status: 200, json: url.to_json
     else
-      render status: 404, json: "URL not found"
+      render status: 404, json: ["URL not found"]
     end
   end
 
@@ -78,13 +78,13 @@ private
 
   def verify_long_url
     unless params['long_url'] =~ URI::regexp
-      render status: 422, json: "Invalid URL"
+      render status: 422, json: ["Invalid URL"]
     end
   end
 
   def verify_short_url
     unless params['short_url'] =~ URI::regexp
-      render status: 422, json: "Invalid URL"
+      render status: 422, json: ["Invalid URL"]
     end
   end
 

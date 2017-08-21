@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  root 'api/urls#index'
+  root 'static_pages#root'
+  get '/:hash', to: 'api/urls#redir_to'
+
   namespace :api, defaults: { format: :json } do
     resources :urls, only: [:create]
     get 'urls/short', to: 'urls#short_to_long'
-    get '/:hash', to: 'urls#redir_to'
   end
+  get '*path' => redirect('/')
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
