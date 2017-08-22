@@ -1,4 +1,3 @@
-require 'base64'
 require 'uri'
 
 class Api::UrlsController < ApplicationController
@@ -14,15 +13,8 @@ class Api::UrlsController < ApplicationController
     if url
       update(url)
     else
-      Url.transaction do
-        url_params = { long_url: params['long_url'] }
-        last_id = ActiveRecord::Base.connection.select_value(
-                          'select last_value from urls_id_seq'
-                            ).to_i
-        url_params['short_url'] = Base64.urlsafe_encode64((last_id + 1).to_s)
-        url = Url.new(url_params)
-        url.save!
-      end
+      url = Url.new(url_params)
+      url.save!
       render status: 200, json: url.to_json
     end
   end
