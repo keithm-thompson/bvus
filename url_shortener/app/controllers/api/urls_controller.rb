@@ -13,7 +13,7 @@ class Api::UrlsController < ApplicationController
     if url
       update(url)
     else
-      url = Url.new(url_params)
+      url = Url.new(long_url: params['long_url'])
       url.save!
       render status: 200, json: url.to_json
     end
