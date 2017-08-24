@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   get '/:hash', to: 'api/urls#redir_to'
 
   namespace :api, defaults: { format: :json } do
-    resources :urls, only: [:create]
+    resources :urls, only: [:create, :index]
     get 'urls/short', to: 'urls#short_to_long'
   end
+
   get '*path' => redirect('/')
 
   # The priority is based upon order of creation: first created -> highest priority.

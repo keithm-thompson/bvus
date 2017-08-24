@@ -32,6 +32,7 @@ body {
 	line-height: 1;
   background-image: image-url("banner1.jpg");
   background-size: cover;
+	letter-spacing: .1em;
 }
 ol, ul {
 	list-style: none;
@@ -47,6 +48,11 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+a {
+	text-decoration: none;
+	color: #fff;
+	cursor: pointer;
 }
 
 .header {
@@ -89,7 +95,7 @@ table {
   box-shadow: 5px 2px 2px black;
 }
 
-.url-input-container {
+.url-input-header-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,7 +104,7 @@ table {
   height: 35px;
 
   padding: 5px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #fff;
 }
 
 
@@ -110,24 +116,97 @@ table {
   display: flex;
   flex-wrap: wrap;
 
-  padding: 10px;
+  padding: 15px;
 }
 
-.url-input-text-input {
+.url-input-text {
   width: 100%;
+	text-align: center;
+	margin-bottom: 20px;
+
+	label {
+		width: 100%;
+	}
+
+	input {
+		width: 90%;
+		color: white;
+		background-color: transparent;
+		height: 20px;
+		padding: 5px;
+		font-size: 12px;
+		margin-top: 5px;
+		text-align: center;
+	}
 }
 
 .most-shortened-container {
   width: 100%;
-  height: 250px;
-  border: 1px solid gray;
+  height: 350px;
 
   margin-top: 40px;
   margin-bottom: 40px;
+	margin: 0 auto;
+	color: #ffffff;
 
   background: #232526;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   box-shadow: 5px 2px 2px black;
+}
+
+.most-shortened-header-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	height: 35px;
+
+	padding: 5px;
+	border-bottom: 1px solid #fff;
+}
+
+.most-shortened-header {
+	font-size: 22px;
+}
+
+.most-shortened-body-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.page {
+	width: 100%;
+}
+
+.row {
+	display: flex;
+	width: 100%;
+	height: 20px;
+	margin-top: 5px;
+	* {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.url-rank {
+	width: 10%;
+	font-size: 14px;
+}
+
+.url-link {
+	width: 70%;
+	font-size: 14px;
+}
+
+.url-num-times-shortened {
+	width: 20%;
+	font-size: 14px;
 }

@@ -5,7 +5,7 @@ class Api::UrlsController < ApplicationController
     'development' => ['localhost.com'],
     'production' => ['bvurlshortener.herokuapp.com']
   }
-  before_action :verify_long_url, only: [:long_to_short]
+  before_action :verify_long_url, only: [:create, :long_to_short]
   before_action :verify_short_url, only: [:short_to_long]
 
   def create

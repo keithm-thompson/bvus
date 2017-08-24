@@ -1,13 +1,13 @@
 export const shortenUrl = (longUrl) => {
-  makeXHR('POST', '/api/urls', { long_url: longUrl });
+  return makeXHR('POST', '/api/urls', { long_url: longUrl });
 };
 
 export const getLongUrl = (shortUrl) => {
-  makeXHR('GET', '/api/urls/short', { short_url: shortUrl });
+  return makeXHR('GET', '/api/urls/short', { short_url: shortUrl });
 };
 
 export const getMostCommonlyShortenedUrls = () => {
-  makeXHR('GET', '/api/urls');
+  return makeXHR('GET', '/api/urls');
 };
 
 const makeXHR = (method, url, data) => {
@@ -17,7 +17,7 @@ const makeXHR = (method, url, data) => {
     request.setRequestHeader('Content-Type', 'application/json');
     request.onload = () => {
       if (request.status >= 200 && request.status < 300) {
-        resolve(request.response);
+        resolve(JSON.parse(request.response));
       } else {
         reject({
           status: request.status,
