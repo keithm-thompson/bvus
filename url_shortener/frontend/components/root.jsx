@@ -4,7 +4,6 @@ import Header from './header';
 import UrlInputContainer from './url_input/container';
 import TopUrlsContainer from './top_urls/container';
 
-
 export default class Root extends Component {
   render() {
     return(
