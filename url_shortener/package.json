@@ -4,9 +4,11 @@
   "description": "== README",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack -w": "./node_modules/.bin/webpack --watch",
-    "webpack": "./node_modules/.bin/webpack"
+    "postinstall": "webpack"
+  },
+  "engines": {
+    "node": "4.1.1",
+    "npm": "2.1.x"
   },
   "keywords": [],
   "author": "",
