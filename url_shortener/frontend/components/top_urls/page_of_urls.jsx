@@ -18,14 +18,14 @@ export default props => {
     <div className="page">
       <div className="row">
         <span
-          className="url-rank" 
+          className="url-rank"
           style={{fontSize: '18px'}}> rank </span>
         <span
           className="url-link"
           style={{fontSize: '18px'}}>URL</span>
         <span
           className="url-num-times-shortened"
-          style={{fontSize: '18px'}}> times shortened </span>
+          style={{fontSize: '18px'}}> count </span>
       </div>
       { urls }
     </div>

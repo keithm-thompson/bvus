@@ -3,7 +3,7 @@ export const shortenUrl = (longUrl) => {
 };
 
 export const getLongUrl = (shortUrl) => {
-  return makeXHR('GET', '/api/urls/short', { short_url: shortUrl });
+  return makeXHR('GET', `/api/urls/short?short_url=${shortUrl}`);
 };
 
 export const getMostCommonlyShortenedUrls = () => {
@@ -21,14 +21,15 @@ const makeXHR = (method, url, data) => {
       } else {
         reject({
           status: request.status,
-          statusText: request.statusText
+          statusText: request.statusText,
+          errorMessage: JSON.parse(request.response)
         });
       }
     };
 
     request.onerror = () => {
       reject({
-        status: this.status,
+        status: request.status,
         statusText: request.statusText
       });
     };

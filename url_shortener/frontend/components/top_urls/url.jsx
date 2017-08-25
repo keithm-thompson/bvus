@@ -7,7 +7,7 @@ export default props => {
     <div className="row">
       <p className="url-rank">{ num } </p>
       <div className="url-link">
-        <a href={"http://" + long_url}>{ long_url }</a>
+        <a href={long_url}>{ long_url }</a>
       </div>
       <p className="url-num-times-shortened">{ num_times_shortened }</p>
     </div>

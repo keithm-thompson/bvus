@@ -5,15 +5,15 @@ class Api::UrlsController < ApplicationController
     'development' => ['localhost.com'],
     'production' => ['bvurlshortener.herokuapp.com']
   }
-  before_action :verify_long_url, only: [:create, :long_to_short]
-  before_action :verify_short_url, only: [:short_to_long]
+  before_action :verify_url, only: [:create, :long_to_short, :short_to_long]
 
   def create
-    url = Url.where(long_url: params['long_url'])[0]
+    uri = create_uri(params['long_url'])
+    url = Url.where(long_url: uri.to_s)[0]
     if url
       update(url)
     else
-      url = Url.new(long_url: params['long_url'])
+      url = Url.new(long_url: uri.to_s)
       url.save!
       render status: 200, json: url.to_json
     end
@@ -68,20 +68,16 @@ private
     render status: 200, json: url.to_json
   end
 
-  def verify_long_url
-    unless params['long_url'] =~ URI::regexp
-      render status: 422, json: ["Invalid URL"]
-    end
-  end
-
-  def verify_short_url
-    unless params['short_url'] =~ URI::regexp
+  def verify_url
+    url = params['long_url'] || params['short_url']
+    uri = create_uri(url)
+    unless uri.host.include?(".")
       render status: 422, json: ["Invalid URL"]
     end
   end
 
   def valid_short_url_host?(url)
-    url = create_uri(url)
-    DOMAINS_FOR_ENV[Rails.env].includes?(uri.host)
+    uri = create_uri(url)
+    DOMAINS_FOR_ENV[Rails.env].any? {|domain| domain.include?(uri.host) }
   end
 end
