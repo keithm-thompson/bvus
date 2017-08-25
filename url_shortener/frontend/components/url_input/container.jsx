@@ -18,7 +18,11 @@ export default class UrlInputContainer extends Component {
   }
 
   handleInput(e) {
-    this.setState({ url: e.currentTarget.value });
+    this.setState({
+      url: e.currentTarget.value,
+      error: false,
+      output: ""
+     });
   }
 
   handleSubmit(type) {
@@ -59,7 +63,8 @@ export default class UrlInputContainer extends Component {
     }).catch( response => {
       this.setState({
         error: true,
-        errorMessage: response.errorMessage
+        output: response.errorMessage,
+        isLoading: false
       })
     });
   }
@@ -68,11 +73,13 @@ export default class UrlInputContainer extends Component {
     shortenUrl(url).then( response => {
       this.setState({
         output: window.location.href + response.short_url,
-        isLoading: false });
+        isLoading: false
+       });
     }).catch( response => {
       this.setState({
         error: true,
-        errorMessage: response.errorMessage
+        output: response.errorMessage,
+        isLoading: false
       });
     });
   }
@@ -84,7 +91,11 @@ export default class UrlInputContainer extends Component {
       inputLabel,
       outputLabel
     } = this.getText(type);
-    const { isLoading, output} = this.state;
+    const {
+      isLoading,
+      output,
+      error
+    } = this.state;
 
 
     return(
@@ -104,7 +115,7 @@ export default class UrlInputContainer extends Component {
             />
           </div>
           <div className="url-input-text">
-              <p><span>{ outputLabel }</span> { output }</p>
+              <p><span>{ outputLabel }</span> <span className={ error && "error"}>{ output }</span></p>
           </div>
         </div>
         <div className="url-submit">
