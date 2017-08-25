@@ -4,7 +4,9 @@
   "description": "== README",
   "main": "index.js",
   "scripts": {
-    "postinstall": "webpack"
+    "postinstall": "webpack",
+    "webpack -w": "./node_modules/.bin/webpack --watch",
+    "webpack": "./node_modules/.bin/webpack",
   },
   "engines": {
     "node": "4.1.1",
