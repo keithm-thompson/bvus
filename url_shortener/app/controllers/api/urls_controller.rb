@@ -3,7 +3,7 @@ require 'uri'
 class Api::UrlsController < ApplicationController
   DOMAINS_FOR_ENV = {
     'development' => ['localhost.com'],
-    'production' => ['bvurlshortener.herokuapp.com']
+    'production' => ['bvus.herokuapp.com']
   }
   before_action :verify_url, only: [:create, :long_to_short, :short_to_long]
 
