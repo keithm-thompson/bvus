@@ -25,3 +25,5 @@
   * provides enough unique links to generate more than 100 urls
   * can be easily changed to serve a different Google search
   * links entered into the database are of varying length
+
+Note: The webapp is running on a free dyno from heroku so please give it a few seconds to "wake up" on initial requests
